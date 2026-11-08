@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Sen uchun savollar 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#2a0b3f;--bg2:#6b1a5c;--bg3:#d03b73;--bg4:#ff9a76;--card:rgba(255,255,255,.13);--card-b:rgba(255,255,255,.3);--text:#fff6f8;--muted:rgba(255,246,248,.8);--opt:rgba(255,255,255,.14);--opt-h:rgba(255,255,255,.28);--accent:#ff6f9c;--accent-t:#3a0a24}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%}
+body{margin:0;min-height:100%;background:var(--bg1);color:var(--text);font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));overflow-x:hidden}
+.sky{position:fixed;inset:0;z-index:0;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));background-size:300% 300%;animation:drift 22s ease-in-out infinite}
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.45;z-index:0;animation:bob 14s ease-in-out infinite}
+.b1{width:260px;height:260px;background:#ff7eb3;top:-60px;left:-70px}
+.b2{width:300px;height:300px;background:#ffb27a;bottom:-90px;right:-90px;animation-delay:-6s}
+@keyframes drift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes bob{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-26px)}}
+#hearts{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.h{position:absolute;bottom:-40px;color:#fff;opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.65}100%{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+#card{position:relative;z-index:2;width:100%;max-width:440px;padding:28px 22px;border-radius:26px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(20,0,30,.35);text-align:center;opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s}
+#card.in{opacity:1;transform:none}
+h1,h2{font-family:"Dancing Script",cursive,serif;font-weight:700;margin:0 0 12px;line-height:1.15}
+h1{font-size:2.6rem}
+h2{font-size:1.9rem}
+p{margin:0 0 18px;color:var(--muted);line-height:1.55;font-size:1.02rem}
+.dots{display:flex;gap:8px;justify-content:center;margin-bottom:18px}
+.dots i{width:30px;height:5px;border-radius:5px;background:rgba(255,255,255,.28)}
+.dots i.on{background:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+.opt{display:block;width:100%;margin:0 0 10px;padding:14px 16px;border-radius:16px;border:1px solid var(--card-b);background:var(--opt);font-weight:700;font-size:1rem;transition:background .2s,transform .15s}
+.opt:hover,.opt:focus-visible{background:var(--opt-h);outline:none}
+.opt:active{transform:scale(.98)}
+.opt:focus-visible,.go:focus-visible,textarea:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.go{display:inline-block;margin-top:6px;padding:13px 30px;border:0;border-radius:999px;background:linear-gradient(90deg,#ff6f9c,#ffa07a);color:var(--accent-t);font-weight:700;font-size:1.02rem;box-shadow:0 8px 24px rgba(255,111,156,.4)}
+textarea{width:100%;min-height:90px;margin:2px 0 10px;padding:12px 14px;border-radius:14px;border:1px solid var(--card-b);background:rgba(255,255,255,.92);color:#33122a;font:inherit;resize:vertical}
+.own{display:none;animation:pop .3s}
+.own.show{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.big{font-size:clamp(2rem,9.5vw,2.8rem);text-transform:uppercase;letter-spacing:.02em;text-shadow:0 0 22px rgba(255,120,170,.9),0 0 48px rgba(255,160,120,.6);animation:beat 2.2s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.sad{font-size:3rem;margin:6px 0 14px}
+.st{font-size:.92rem;margin:0}
+@media (prefers-reduced-motion:reduce){.sky,.blob,.h,.big{animation:none}.h{display:none}}
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="blob b1"></div><div class="blob b2"></div>
+<div id="hearts" aria-hidden="true"></div>
+<main id="card" aria-live="polite"></main>
+<script>
+// 1) web3forms.com saytida emailingizni kiriting, kalit emailingizga keladi.
+// 2) Kalitni shu qator ichiga qoʻying:
+var ACCESS_KEY = "BU_YERGA_KALITNI_QOYING";
+
+var Q=[
+  {t:'Harakat qilmading dema menga. Men necha marta yoningga seni ko‘rish uchun bordim, hech bo‘lmasa bir marta ko‘rib, gaplashib olay deb bordim. Lekin o‘sha safar borganimda ensangni qotirib, yonimdan o‘tib ketding. Men qanday ahvolda kelganim senga qiziq bo‘lmadimi? Necha soat ishda yurib, keyin yoningga kelganimni o‘ylamadingmi? Mayli deb yana necha marta bordim, lekin sen ko‘rinmading. Shu savolimga javob ber: bir marta telefon qilish shunchalik qiyinmi? Maktabda yoki universitetda bo‘lganingda, o‘zingning telefoning bo‘lmasa ham, biror qizning telefonidan bir daqiqaga gaplashishning iloji yo‘qmidi? Men senga telefon qilmadim — oilangdan gap eshitmasin, akasi bilan muammo bo‘lmasin, deb o‘yladim. Balki telefoningda ham blokdadirman. Shuni bilib qo‘y: vaqt orani sovutadi. Lekin to‘g‘risi, gaplaringdan avvalgi Muslimani ko‘rmadim. To‘g‘ri, hamma o‘zgaradi, lekin bu boshqa masala. Mayli, nima ham derdim, o‘zingga yarasha ishlaring, seni ham kutayotgan “tanishlaring” bor…',ph:"Javobingni shu yerga ochiqchasiga yoz…"}
+];
+var card=document.getElementById("card"),ans=[],sent=false,sending=false;
+
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function show(fn,instant){
+  card.classList.remove("in");
+  setTimeout(function(){card.replaceChildren();fn();card.scrollIntoView({block:"center"});card.classList.add("in")},instant?0:300);
+}
+function hearts(n,burst){
+  var box=document.getElementById("hearts");
+  for(var i=0;i<n;i++){
+    var s=el("span","h",["♥","❤","💗","💖"][i%4]);
+    s.style.left=Math.random()*100+"%";
+    s.style.fontSize=(12+Math.random()*26)+"px";
+    s.style.animationDuration=(burst?4+Math.random()*4:9+Math.random()*10)+"s";
+    s.style.animationDelay=(burst?Math.random()*1.5:-Math.random()*14)+"s";
+    box.appendChild(s);
+  }
+}
+function intro(){
+  card.appendChild(el("h1",null,"Sen uchun kichik test 💌"));
+  card.appendChild(el("p",null,"Bitta savol bor. Oʻylab, ochiqchasiga javob ber. Javobing menga yetib boradi 🤍"));
+  var b=el("button","go","Boshlash");
+  b.onclick=function(){ask(0)};
+  card.appendChild(b);
+}
+function ask(i){
+  show(function(){
+    card.appendChild(el("div","dots"));
+    card.appendChild(el("h2",null,Q[i].t));
+    var ta=el("textarea");
+    ta.placeholder=Q[i].ph;
+    ta.setAttribute("aria-label",Q[i].ph);
+    ta.style.minHeight="180px";
+    var go=el("button","go","Javobni yuborish");
+    go.onclick=function(){
+      var v=ta.value.trim();
+      if(!v){ta.focus();return}
+      next(i,v);
+    };
+    card.appendChild(ta);
+    card.appendChild(go);
+  });
+}
+function next(i,a){
+  ans[i]=a;
+  if(i<Q.length-1)ask(i+1);else finale();
+}
+
+// Javoblar bir marta, test tugaganda emailga yuboriladi
+function sendOnce(status,retry){
+  if(sent||sending)return;
+  if(ACCESS_KEY==="BU_YERGA_KALITNI_QOYING"){status.textContent="⚠️ Web3Forms kaliti qoʻyilmagan, javoblar yuborilmadi.";return}
+  sending=true;retry.style.display="none";status.textContent="Yuborilmoqda…";
+  var lines=Q.map(function(q,k){return (k+1)+") "+q.t+"\n→ "+ans[k]});
+  fetch("https://api.web3forms.com/submit",{
+    method:"POST",
+    headers:{"Content-Type":"application/json",Accept:"application/json"},
+    body:JSON.stringify({access_key:ACCESS_KEY,subject:"Savollarga javoblar 💌",from_name:"Sen uchun test",message:lines.join("\n\n")})
+  }).then(function(r){return r.json()}).then(function(j){
+    sending=false;
+    if(j&&j.success){sent=true;status.textContent="Javoblaring yuborildi ✅"}
+    else{status.textContent="Yuborib boʻlmadi.";retry.style.display=""}
+  }).catch(function(){
+    sending=false;status.textContent="Yuborib boʻlmadi. Internetni tekshir.";retry.style.display="";
+  });
+}
+function finale(){
+  show(function(){
+    card.appendChild(el("div","sad","☹️"));
+    card.appendChild(el("h2","big","Men seni haliyam unutmadim"));
+    card.appendChild(el("p",null,"Javoblaring uchun rahmat."));
+    var status=el("p","st"),retry=el("button","go","Qayta yuborish");
+    retry.style.display="none";
+    retry.onclick=function(){sendOnce(status,retry)};
+    card.appendChild(status);card.appendChild(retry);
+    hearts(30,true);
+    sendOnce(status,retry);
+  });
+}
+hearts(18,false);
+show(intro,true);
+</script>
+</body>
+</html>
